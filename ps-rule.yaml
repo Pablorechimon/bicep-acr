@@ -13,10 +13,8 @@ configuration:
   AZURE_BICEP_FILE_EXPANSION: true
   # Validate that the bicep CLI is used
   AZURE_BICEP_CHECK_TOOL: true
-  
-  #PSRULE_AZURE_BICEP_PATH: "%USERPROFILE%\\.bicep\\"
-  #AZURE_BICEP_PARAMS_FILE_EXPANSION: false
-  #AZURE_PARAMETER_FILE_EXPANSION: false
+  AZURE_BICEP_PARAMS_FILE_EXPANSION: true
+  AZURE_PARAMETER_FILE_EXPANSION: true
 
 input:
   pathIgnore:
@@ -26,7 +24,7 @@ input:
 
 #    #Include test files from modules
     #- '!**/*.bicep'
-    - '../!deployment/*.bicep'  
+    - '!deployment/*.bicep'  
 
 #execution:
   # Disable warnings that files cannot be processed
