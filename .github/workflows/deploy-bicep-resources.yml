@@ -14,12 +14,6 @@ jobs:
       # Checkout code
     - uses: actions/checkout@v2
       
-      # Log into Azure
-    - name: Login to Azure  
-      uses: azure/login@v1.4.3
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-      
     - name: Run PSRule analysis
       uses: microsoft/ps-rule@v2.9.0
       with:
