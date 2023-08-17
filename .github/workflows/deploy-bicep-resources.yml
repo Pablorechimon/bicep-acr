@@ -21,7 +21,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Run PSRule
-      uses: pablorechimon/psrule-bicep@v1.1.0
+      uses: pablorechimon/psrule-bicep@latest
       # run: |
       #   curl -L -O ${{env.psrule_config_url}}
       #   filename=$(basename ${{env.psrule_config_url}})

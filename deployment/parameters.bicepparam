@@ -17,7 +17,7 @@ param tags = {
 param workspaceId = '/subscriptions/ea93148e-4b2f-4f06-b7fb-2c8ecc309d3f/resourceGroups/RG-JMF-POC-2/providers/Microsoft.OperationalInsights/workspaces/workspace-lab-jmf-01'
 
 param accountTier = 'Standard_LRS'
-param allowBlobPublicAccess = 'Deny'
+param allowBlobPublicAccess = 'false'
 param stgServiceEndpointSubnetName = 'StorageSubnet'
 param accessTier = 'Hot'
 

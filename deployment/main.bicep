@@ -49,8 +49,8 @@ param workspaceId string ='/subscriptions/ea93148e-4b2f-4f06-b7fb-2c8ecc309d3f/r
 ])
 param accountTier string = 'Standard_LRS'
 
-@description('Allow or Deny the storage public access. Default is Deny')
-param allowBlobPublicAccess string = 'Deny'
+@description('Allow or Deny the storage public access. Default is false')
+param allowBlobPublicAccess string = 'false'
 
 @description('The name from Service Endpoint VNET.')
 param stgServiceEndpointVnetName string = 'vnet-jmf-poc'
