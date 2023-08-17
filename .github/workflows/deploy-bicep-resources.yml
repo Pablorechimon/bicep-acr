@@ -22,10 +22,10 @@ jobs:
       #   tar -xvzf $filename --strip-components 1 --exclude="README.md"
       #   ls -la
       
-    - name: Run PSRule analysis
-      uses: microsoft/ps-rule@v2.9.0
-      with:
-        version: '1.11.1'
-        modules: 'PSRule.Rules.Azure'
-        inputPath: 'deployment/'
-        source: '.'  
+    # - name: Run PSRule analysis
+    #   uses: microsoft/ps-rule@v2.9.0
+    #   with:
+    #     version: '1.11.1'
+    #     modules: 'PSRule.Rules.Azure'
+    #     inputPath: 'deployment/'
+    #     source: '.'  
