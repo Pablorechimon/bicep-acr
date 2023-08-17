@@ -18,11 +18,12 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Download PSRule Configuration File
-      run: |
-        curl -L -O ${{env.psrule_config_url}}
-        filename=$(basename ${{env.psrule_config_url}})
-        tar -xvzf $filename --strip-components 1 --exclude="README.md"
-        ls -la
+      uses: pablorechimon/psrule-bicep@v1
+      # run: |
+      #   curl -L -O ${{env.psrule_config_url}}
+      #   filename=$(basename ${{env.psrule_config_url}})
+      #   tar -xvzf $filename --strip-components 1 --exclude="README.md"
+      #   ls -la
       
     - name: Run PSRule analysis
       uses: microsoft/ps-rule@v2.9.0
