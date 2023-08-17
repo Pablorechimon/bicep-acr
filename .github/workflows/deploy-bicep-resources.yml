@@ -21,10 +21,7 @@ jobs:
       run: |
         curl -L -O ${{env.psrule_config_url}}
         filename=$(basename ${{env.psrule_config_url}})
-        tar -xzvf $filename -C psrule-config
-        pwd
-        cp psrule-config/ps-rule.yml .
-        cp psrule-config/bicepconfig.json .
+        tar -xvzf $filename --strip-components 1 --exclude="README.md"
         ls -la
       
     # - name: Run PSRule analysis
