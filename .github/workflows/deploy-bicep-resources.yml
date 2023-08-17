@@ -1,64 +1,33 @@
-name: Azure ARM
+---
+name: PSRule Bicep Validation
 
 on:
   push:
     branches: [ "feature/PSRule" ]
-
   workflow_dispatch:
+
+env:
+  psrule_config_url: "https://github.com/Pablorechimon/psrule-bicep/archive/refs/tags/v0.0.1.tar.gz"
 
 jobs:
   Preview-Bicep-Changes:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout code
+      # Checkout code  
     - uses: actions/checkout@v2
+
+    - name: Download PSRule Configuration File
+      run: |
+        curl -L -O ${{env.psrule_config_url}}
+        filename=$(basename ${{env.psrule_config_url}})
+        tar -xzvf $filename
+        pwd
       
-    - name: Run PSRule analysis
-      uses: microsoft/ps-rule@v2.9.0
-      with:
-        version: '1.11.1'
-        modules: 'PSRule.Rules.Azure'
-        inputPath: 'deployment/'
-        source: '.'  
-      
-#    - name: Preview Changes from Bicep
-#      uses: Azure/deployment-what-if-action@v1.0.0
-#      with:
-#        subscription: ${{ secrets.AZURE_SUBSCRIPTION }} 
-#        resourceGroup: ${{ secrets.AZURE_RG }} 
-#        templateFile: deployment/main.bicep
-        
-#  Deploy-Azure-from-ACR:
-#    environment: Deployment-POC
-#    needs: [Preview-Bicep-Changes]
-#    runs-on: ubuntu-latest
-
-#    steps:
-#      # Checkout code
-#    - uses: actions/checkout@main
-
-#      # Log into Azure
-#    - uses: azure/login@v1.4.3
-#      with:
-#        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    #  # Deploy Bicep file
-    #- name: Storage Deployment
-    #  uses: azure/arm-deploy@v1
-    #  with:
-    #    subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-    #    resourceGroupName: ${{ secrets.AZURE_RG }}
-    #    template: deployment/storage-resource.bicep
-    #    #parameters: 'storagePrefix=mystore storageSKU=Standard_LRS'
-    #    failOnStdErr: false
-
-#      # Deploy Bicep file
-#    - name: Deployment Bicep Resources
-#      uses: azure/arm-deploy@v1
-#      with:
-#        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-#        resourceGroupName: ${{ secrets.AZURE_RG }}
-#        template: deployment/main.bicep
-#        #parameters: 'storagePrefix=mystore storageSKU=Standard_LRS'
-#        failOnStdErr: false
+    # - name: Run PSRule analysis
+    #   uses: microsoft/ps-rule@v2.9.0
+    #   with:
+    #     version: '1.11.1'
+    #     modules: 'PSRule.Rules.Azure'
+    #     inputPath: 'deployment/'
+    #     source: '.'  
