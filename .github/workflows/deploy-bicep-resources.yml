@@ -21,17 +21,6 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Run PSRule
-      uses: pablorechimon/psrule-bicep@latest
-      # run: |
-      #   curl -L -O ${{env.psrule_config_url}}
-      #   filename=$(basename ${{env.psrule_config_url}})
-      #   tar -xvzf $filename --strip-components 1 --exclude="README.md"
-      #   ls -la
-      
-    # - name: Run PSRule analysis
-    #   uses: microsoft/ps-rule@v2.9.0
-    #   with:
-    #     version: '1.11.1'
-    #     modules: 'PSRule.Rules.Azure'
-    #     inputPath: 'deployment/'
-    #     source: '.'  
+      uses: pablorechimon/psrule-bicep@v0.1
+      with:
+        inputPath: 'deployment/'
