@@ -21,7 +21,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: Run PSRule
-      uses: pablorechimon/psrule-bicep@v0.1
+      uses: pablorechimon/psrule-bicep@latest-exclusions
       with:
         inputPath: 'deployment/'
     
