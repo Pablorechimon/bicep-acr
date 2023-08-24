@@ -27,6 +27,7 @@ jobs:
     
     - name: Export Deployment Data
       run: |
+        Install-Module Az.Resources -RequiredVersion '5.6.0' -Force -Scope CurrentUser
         $result = Export-AzRuleData
         Write-Host $result
       shell: pwsh
