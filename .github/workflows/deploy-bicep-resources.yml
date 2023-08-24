@@ -22,6 +22,12 @@ jobs:
         
     - name: Run PSRule
       uses: pablorechimon/psrule-bicep@latest
+    
+    - name: Script
+      run: |
+        Export-AzRuleData -All
+        dir
+      shell: pwsh
       # run: |
       #   curl -L -O ${{env.psrule_config_url}}
       #   filename=$(basename ${{env.psrule_config_url}})
