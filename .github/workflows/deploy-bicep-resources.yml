@@ -28,7 +28,8 @@ jobs:
     - name: Export Deployment Data
       run: |
         Install-Module Az.Resources -Force -Scope CurrentUser
-        Export-AzRuleData -Subscription 'ea93148e-4b2f-4f06-b7fb-2c8ecc309d3f'
+        Export-AzRuleData
+        Export-AzRuleData
         ls
         Write-Host "Running In flight Validation"
         Assert-PSRule -InputPath '.'
