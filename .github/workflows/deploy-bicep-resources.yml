@@ -27,9 +27,15 @@ jobs:
     
     - name: Export Deployment Data
       run: |
+        $result = Export-AzRuleData
+        Write-Host $result
+      shell: pwsh
+      
+    - name: Testing
+      run: |
         Install-Module Az.Resources -Force -Scope CurrentUser
-        Export-AzRuleData
-        Export-AzRuleData
+        $TestResult = Export-AzRuleData
+        Write-Host $TestResult
         ls
         Write-Host "Running In flight Validation"
         Assert-PSRule -InputPath '.'
