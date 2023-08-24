@@ -24,3 +24,10 @@ jobs:
       uses: pablorechimon/psrule-bicep@v0.1
       with:
         inputPath: 'deployment/'
+    
+    - name: Export Deployment Data
+      run: |
+        Install-Module Az.Resources -Force -Scope CurrentUser
+        Export-AzRuleData -All
+        dir
+      shell: pwsh
