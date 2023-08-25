@@ -35,6 +35,7 @@ jobs:
       
     - name: Testing
       run: |
+        ls
         Install-Module Az.Resources -Force -Scope CurrentUser
         $TestResult = Export-AzRuleData
         Write-Host $TestResult
