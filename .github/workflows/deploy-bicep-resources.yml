@@ -8,7 +8,7 @@
   
   jobs:
     Preview-Bicep-Changes:
-      runs-on: windows-latest
+      runs-on: ubuntu-latest
   
       steps:
         # Checkout code  
@@ -31,15 +31,12 @@
           Install-Module -Repository PSGallery -Name Az.Resources -ErrorAction Stop -Scope CurrentUser -Force
         shell: pwsh
         
-      - name: Testing
+      - name: Export AZ Rule Data
         run: |
-          dir
-          $TestResult = Export-AzRuleData -Verbose
-          $TestResult
-          Get-Error
-          dir
-          Write-Host "Running In flight Validation"
-          Assert-PSRule -InputPath './'
-          Write-Host "In flight Validation Completes"
+          Export-AzRuleData -Verbose
         shell: pwsh
   
+      - name: Run PSRule
+        uses: pablorechimon/psrule-bicep@latest-exclusions
+        with:
+          inputPath: './'
