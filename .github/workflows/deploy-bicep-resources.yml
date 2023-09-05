@@ -33,8 +33,6 @@ jobs:
     - name: Testing
       run: |
         dir
-        Set-AzContext -Tenant '45e46c0f-a5d5-40dd-b10b-d8311cca261e' -Subscription 'ea93148e-4b2f-4f06-b7fb-2c8ecc309d3f'
-        Get-AzContext
         $TestResult = Export-AzRuleData -Verbose
         $TestResult
         Get-Error
