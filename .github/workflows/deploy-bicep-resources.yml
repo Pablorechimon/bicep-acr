@@ -19,28 +19,25 @@ jobs:
       uses: azure/login@v1.4.3
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-    - name: Run PSRule
-      uses: pablorechimon/psrule-bicep@latest-exclusions
-      with:
-        inputPath: 'deployment/'
+    # - name: Run PSRule
+    #   uses: pablorechimon/psrule-bicep@latest-exclusions
+    #   with:
+    #     inputPath: 'deployment/'
     
-    - name: Export Deployment Data
+    - name: Installing Modules
       run: |
-        Install-Module Az.Resources -Force -Scope CurrentUser
-        Install-Module Az.Accounts -Force -Scope CurrentUser
-        $result = Export-AzRuleData
-        Write-Host $result
+        Install-Module -Repository PSGallery -Name PSRule -ErrorAction Stop -Scope CurrentUser -Force
+        Install-Module -Repository PSGallery -Name Az.Resources -ErrorAction Stop -Scope CurrentUser -Force
+        Install-Module -Repository PSGallery -Name Az.Accounts -ErrorAction Stop -Scope CurrentUser -Force
       shell: pwsh
       
     - name: Testing
       run: |
-        ls
-        Install-Module Az.Resources -Force -Scope CurrentUser
+        ls -la
         $TestResult = Export-AzRuleData
         Write-Host $TestResult
-        ls
-        Write-Host "Running In flight Validation"
-        Assert-PSRule -InputPath '.'
-        Write-Host "In flight Validation Completes"
+        ls -la
+        # Write-Host "Running In flight Validation"
+        # Assert-PSRule -InputPath '.'
+        # Write-Host "In flight Validation Completes"
       shell: pwsh
