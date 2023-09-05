@@ -1,0 +1,65 @@
+---
+requires:
+  PSRule: '@pre >=2.8.1'
+  PSRule.Rules.Azure: '@pre >=1.26.1'
+# Rule Inclusions and Exclusions
+include:
+  module:
+    # Import all the Azure Well-Architected Framework rules
+    - PSRule.Rules.Azure
+
+rule:
+  # Enable local rules
+  includeLocal: true
+  # exclude:
+    #    - 'Azure.Resource.UseTags'
+binding:
+  preferTargetInfo: true
+  # Bindings are required for local rules
+  targetType:
+  - type
+  - resourceType (edited) 
+    
+configuration:
+  # Enable expansion for Bicep source files.
+  AZURE_BICEP_FILE_EXPANSION: true
+  # Validate that the bicep CLI is used
+  AZURE_BICEP_CHECK_TOOL: true
+  AZURE_BICEP_PARAMS_FILE_EXPANSION: false
+  # Expand Bicep module from Azure parameter files.
+  AZURE_PARAMETER_FILE_EXPANSION: true
+  AZURE_PARAMETER_FILE_METADATA_LINK: true
+  # Set timeout for expanding Bicep source files.
+  AZURE_BICEP_FILE_EXPANSION_TIMEOUT: 15
+
+input:
+  pathIgnore:
+  # Excluded files
+    - '*.yml'
+    - '*.md'
+    - '*.ps1'
+    - 'bicepconfig.json'
+    - 'metadata.json'
+    - '**/*.md'
+    # - '**/*.json'
+    - '**/*.bicepparam'
+    # Exclude Bicep module files.
+    - "**/*.bicep"
+    # # Exclude JSON module files.
+    # - "modules/**/*.json"
+
+# Included files
+    - '!**/*.json' 
+    # - "!**/.bicepparam"
+
+execution:
+  # Disable warnings that files cannot be processed
+  notProcessedWarning: false
+
+output:
+  as: Summary
+  #culture: [ 'en-US' ]
+  # Show results for rules with the Fail, Pass, or Error outcome
+  #outcome: 'Processed'
+
+  
