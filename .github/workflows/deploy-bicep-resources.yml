@@ -32,7 +32,6 @@ jobs:
     - name: Testing
       run: |
         dir
-        Get-Module -ListAvailable
         $TestResult = Export-AzRuleData
         $TestResult
         dir
