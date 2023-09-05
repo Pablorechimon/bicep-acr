@@ -27,8 +27,6 @@ jobs:
     - name: Installing Modules
       run: |
         Install-Module -Repository PSGallery -Name PSRule.Rules.Azure -ErrorAction Stop -Scope CurrentUser -Force
-        Install-Module -Repository PSGallery -Name Az.Resources -ErrorAction Stop -Scope CurrentUser -Force
-        Install-Module -Repository PSGallery -Name Az.Accounts -ErrorAction Stop -Scope CurrentUser -Force
       shell: pwsh
       
     - name: Testing
