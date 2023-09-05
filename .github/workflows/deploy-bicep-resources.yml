@@ -36,7 +36,9 @@
           Export-AzRuleData -Verbose
         shell: pwsh
   
-      - name: Run PSRule
-        uses: pablorechimon/psrule-bicep@latest-exclusions
+      - name: Run PSRule analysis for Security
+        uses: microsoft/ps-rule@v2.9.0
         with:
+          version: '1.11.1'
+          modules: 'PSRule.Rules.Azure'
           inputPath: './'
