@@ -27,11 +27,15 @@ jobs:
     - name: Installing Modules
       run: |
         Install-Module -Repository PSGallery -Name PSRule.Rules.Azure -ErrorAction Stop -Scope CurrentUser -Force
+        Install-Module -Repository PSGallery -Name Az.Resources -ErrorAction Stop -Scope CurrentUser -Force
+        Install-Module -Repository PSGallery -Name Az.Accounts -ErrorAction Stop -Scope CurrentUser -Force
+        Uninstall-AzureRm
       shell: pwsh
       
     - name: Testing
       run: |
         dir
+        Get-Module -ListAvailable
         $TestResult = Export-AzRuleData
         $TestResult
         dir
