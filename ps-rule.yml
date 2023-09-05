@@ -50,6 +50,7 @@ input:
 
 # Included files
     - '!**/*.json' 
+    - '!*.json' 
     # - "!**/.bicepparam"
 
 execution:
