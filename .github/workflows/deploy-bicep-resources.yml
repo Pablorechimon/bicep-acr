@@ -38,6 +38,7 @@ jobs:
         Get-AzContext
         $TestResult = Export-AzRuleData -Verbose
         $TestResult
+        Get-Error
         dir
         Write-Host "Running In flight Validation"
         Assert-PSRule -InputPath '.'
