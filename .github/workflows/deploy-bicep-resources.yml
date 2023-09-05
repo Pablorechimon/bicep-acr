@@ -1,44 +1,45 @@
 ---
-name: PSRule Bicep Validation
-
-on:
-  push:
-    branches: [ "feature/PSRule-dev" ]
-  workflow_dispatch:
-
-jobs:
-  Preview-Bicep-Changes:
-    runs-on: windows-latest
-
-    steps:
-      # Checkout code  
-    - uses: actions/checkout@v2
-
-          # Log into Azure
-    - name: Login to Azure  
-      uses: azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        enable-AzPSSession: true
-    # - name: Run PSRule
-    #   uses: pablorechimon/psrule-bicep@latest-exclusions
-    #   with:
-    #     inputPath: 'deployment/'
-    
-    - name: Installing Modules
-      run: |
-        Install-Module -Repository PSGallery -Name PSRule.Rules.Azure -ErrorAction Stop -Scope CurrentUser -Force
-        Install-Module -Repository PSGallery -Name Az.Resource -ErrorAction Stop -Scope CurrentUser -Force
-      shell: pwsh
+  name: PSRule Bicep Validation
+  
+  on:
+    push:
+      branches: [ "feature/PSRule-dev" ]
+    workflow_dispatch:
+  
+  jobs:
+    Preview-Bicep-Changes:
+      runs-on: windows-latest
+  
+      steps:
+        # Checkout code  
+      - uses: actions/checkout@v2
+  
+            # Log into Azure
+      - name: Login to Azure  
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+          enable-AzPSSession: true
+      # - name: Run PSRule
+      #   uses: pablorechimon/psrule-bicep@latest-exclusions
+      #   with:
+      #     inputPath: 'deployment/'
       
-    - name: Testing
-      run: |
-        dir
-        $TestResult = Export-AzRuleData -Verbose
-        $TestResult
-        Get-Error
-        dir
-        Write-Host "Running In flight Validation"
-        Assert-PSRule -InputPath './'
-        Write-Host "In flight Validation Completes"
-      shell: pwsh
+      - name: Installing Modules
+        run: |
+          Install-Module -Repository PSGallery -Name PSRule.Rules.Azure -ErrorAction Stop -Scope CurrentUser -Force
+          Install-Module -Repository PSGallery -Name Az.Resources -ErrorAction Stop -Scope CurrentUser -Force
+        shell: pwsh
+        
+      - name: Testing
+        run: |
+          dir
+          $TestResult = Export-AzRuleData -Verbose
+          $TestResult
+          Get-Error
+          dir
+          Write-Host "Running In flight Validation"
+          Assert-PSRule -InputPath './'
+          Write-Host "In flight Validation Completes"
+        shell: pwsh
+  
