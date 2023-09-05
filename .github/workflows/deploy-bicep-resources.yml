@@ -33,11 +33,11 @@ jobs:
       
     - name: Testing
       run: |
-        ls -la
+        dir
         $TestResult = Export-AzRuleData
-        Write-Host $TestResult
-        ls -la
-        # Write-Host "Running In flight Validation"
-        # Assert-PSRule -InputPath '.'
-        # Write-Host "In flight Validation Completes"
+        $TestResult
+        dir
+        Write-Host "Running In flight Validation"
+        Assert-PSRule -InputPath '.'
+        Write-Host "In flight Validation Completes"
       shell: pwsh
