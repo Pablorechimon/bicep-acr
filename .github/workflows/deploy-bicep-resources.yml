@@ -35,7 +35,7 @@ jobs:
     - name: Testing
       run: |
         dir
-        Get-Module -ListAvailable
+        Get-AzContext
         $TestResult = Export-AzRuleData
         $TestResult
         dir
