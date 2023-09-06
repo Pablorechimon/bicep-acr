@@ -34,6 +34,7 @@
       - name: Export AZ Rule Data
         run: |
           Export-AzRuleData -Verbose
+          cat *.json | ConvertTo-Json
         shell: pwsh
   
       - name: Run PSRule analysis for Security
