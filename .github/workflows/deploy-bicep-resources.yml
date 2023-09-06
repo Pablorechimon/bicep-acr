@@ -33,8 +33,8 @@
         
       - name: Export AZ Rule Data
         run: |
-          Export-AzRuleData -Verbose
-          cat *.json | ConvertTo-Json
+          $json = Export-AzRuleData -Verbose
+          Assert-PSRule -InputPath $json.name
         shell: pwsh
   
       - name: Run PSRule analysis for Security
